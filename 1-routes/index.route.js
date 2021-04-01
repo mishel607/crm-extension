@@ -53,7 +53,7 @@ const routes = [
   {
     path: "/",
     handler: (req, res) => {
-      return res.status(200).render("index");
+      return res.status(200).render("home");
     },
   },
 ];
