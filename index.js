@@ -21,7 +21,7 @@ const getMessage = (req, res) => {
   return JSON.stringify(obj);
 };
 
-setInfoLoggerWinston(app, getMessage, __dirname); //6-public+log
+//setInfoLoggerWinston(app, getMessage, __dirname); //6-public+log
 
 // Setup View Engine
 setViewEngine(app, __dirname);
@@ -36,7 +36,7 @@ app.use(setLocals());
 // Using Routes from Route Directory
 setRoutes(app);
 //set wisnton error logger
-setErrorLoggerWinston(app, getMessage, __dirname);
+//setErrorLoggerWinston(app, getMessage, __dirname);
 //using error handle
 setErrorRoute(app);
 

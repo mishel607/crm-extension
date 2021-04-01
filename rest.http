@@ -69,3 +69,16 @@ Content-Type: application/json
 "objectId":4949871654,
 "name":"test"
 }
+
+### get rocket by id
+GET http://localhost:8080/tickets
+
+
+
+### get rocket by id
+POST http://localhost:8080/tickets
+Content-Type: application/json
+
+{
+"description":"test"
+}

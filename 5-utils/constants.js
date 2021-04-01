@@ -4,6 +4,11 @@ module.exports = {
     moderator: "MODERATOR",
     client: "CLIENT",
   },
+  ticketTypes: {
+    bug: "BUG",
+    error: "ERROR",
+    solve: "SOLVE",
+  },
 
   hubs: {
     TierOne: {

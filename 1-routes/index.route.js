@@ -7,6 +7,7 @@ const tierOneRoute = require("./routeCollection/tierOneRoute");
 const userRoute = require("./routeCollection/userRoute");
 const productRoute = require("./routeCollection/productRoute");
 const rocketRoute = require("./routeCollection/rocketRoute");
+const ticketRoute = require("./routeCollection/ticketRoute");
 
 const routes = [
   {
@@ -44,6 +45,10 @@ const routes = [
   {
     path: "/rockets",
     handler: rocketRoute,
+  },
+  {
+    path: "/tickets",
+    handler: ticketRoute,
   },
   {
     path: "/",

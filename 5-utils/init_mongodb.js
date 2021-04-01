@@ -62,7 +62,7 @@ function connectWithLocalDB(app) {
 function connectWithCloudDB(app) {
   mongoose
     .connect(process.env.CLOUD_MONGODB_URI, {
-      dbName: "rbacDB",
+      dbName: "pineApple",
       user: "shamim",
       pass: "imshamim123",
       useNewUrlParser: true,
@@ -88,8 +88,8 @@ function connectWithCloudDB(app) {
 }
 
 module.exports = (app) => {
-  connectWithLocalDB(app);
-  //connectWithCloudDB(app);
+  //connectWithLocalDB(app);
+  connectWithCloudDB(app);
 
   //call back before connection established.
   mongoose.connection.on("connected", () => {
