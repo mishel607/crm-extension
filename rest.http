@@ -1,0 +1,71 @@
+###
+GET http://localhost:8080
+
+###
+
+GET http://localhost:8080/test
+
+
+###Register route
+POST http://localhost:8080/auth/signup
+Content-Type: application/json
+
+
+{ 
+    "username":"", "email":"", "password":""
+}
+
+###
+GET http://localhost:8080/products
+
+
+### post new product
+Post http://localhost:8080/products
+Content-Type: application/x-www-form-urlencoded
+
+name=iMac&price=5000
+
+
+
+### post new product
+POST http://localhost:8080/products
+Content-Type: application/json
+
+
+{ 
+    "name":"iMac-a", "price":8000
+}
+
+###
+GET http://localhost:8080/products/60310c425d621d3c68f8b0ff
+
+###
+PATCH  http://localhost:8080/products/60310c425d621d3c68f8b01d
+Content-Type: application/json
+
+{ 
+    "name":"iMac-a", "price":5000
+}
+
+###
+DELETE   http://localhost:8080/products/60310c425d621d3c68f8b01d
+
+
+### get all rockets
+GET http://localhost:8080/rockets
+
+### get rocket by id
+GET http://localhost:8080/rockets/falcon1
+
+### get rocket by id
+GET http://localhost:8080/tierone
+
+
+### get rocket by id
+POST http://localhost:8080/tierone
+Content-Type: application/json
+
+{
+"objectId":4949871654,
+"name":"test"
+}
