@@ -73,6 +73,9 @@ Content-Type: application/json
 ### get rocket by id
 GET http://localhost:8080/tickets
 
+### get rocket by id
+GET http://localhost:8080/tickets/hubspot
+
 
 
 ### get rocket by id
@@ -80,5 +83,5 @@ POST http://localhost:8080/tickets
 Content-Type: application/json
 
 {
-"description":"test"
+"description":"test2"
 }
