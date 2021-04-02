@@ -52,9 +52,9 @@ function connectWithLocalDB(app) {
     .then(() => {
       console.log("LOCAL mongodb connected.");
 
-      //serverConnect(app);
+      serverConnect(app);
 
-      serverScaleWithClusterProcess(app);
+      //serverScaleWithClusterProcess(app);
     })
     .catch((err) => console.log(err.message));
 }
@@ -80,9 +80,9 @@ function connectWithCloudDB(app) {
       //   console.log(chalk.green.inverse(`Server is running on PORT ${PORT}`));
       // });
 
-      //serverConnect(app);
+      serverConnect(app);
 
-      serverScaleWithClusterProcess(app);
+      //serverScaleWithClusterProcess(app);
     })
     .catch((err) => console.log(err.message));
 }
