@@ -18,47 +18,125 @@ exports.get_hubspot_tickets = async (req, res, next) => {
     //return res.send(results);
 
     res.json({
-      applicationId: 767676,
-      baseUris: ["https://example.com/actions"],
-      dataFetchUri: "https://example.com/demo-tickets",
-      title: "DemoTickets",
-      propertyDefinitions: [
+      results: [
         {
-          name: "ticket_type",
-          label: "Ticket type",
-          dataType: "STRING",
-        },
-        {
-          options: [
+          objectId: 245,
+          title: "API-22: APIs working too fast",
+          link: "http://example.com/1",
+          created: "2016-09-15",
+          priority: "HIGH",
+          project: "API",
+          reported_by: "msmith@hubspot.com",
+          description:
+            "Customer reported that the APIs are just running too fast. This is causing a problem in that they're so happy.",
+          reporter_type: "Account Manager",
+          status: "In Progress",
+          ticket_type: "Bug",
+          updated: "2016-09-28",
+          actions: [
             {
-              type: "SUCCESS",
-              label: "In Progress",
-              name: "inprogress",
+              type: "IFRAME",
+              width: 890,
+              height: 748,
+              uri: "https://example.com/edit-iframe-contents",
+              label: "Edit",
+              associatedObjectProperties: [],
             },
             {
-              type: "DEFAULT",
-              label: "Resolved",
-              name: "resolved",
+              type: "IFRAME",
+              width: 890,
+              height: 748,
+              uri: "https://example.com/reassign-iframe-contents",
+              label: "Reassign",
+              associatedObjectProperties: [],
+            },
+            {
+              type: "ACTION_HOOK",
+              httpMethod: "PUT",
+              associatedObjectProperties: [],
+              uri: "https://example.com/tickets/245/resolve",
+              label: "Resolve",
+            },
+            {
+              type: "CONFIRMATION_ACTION_HOOK",
+              confirmationMessage:
+                "Are you sure you want to delete this ticket?",
+              confirmButtonText: "Yes",
+              cancelButtonText: "No",
+              httpMethod: "DELETE",
+              associatedObjectProperties: ["protected_account"],
+              uri: "https://example.com/tickets/245",
+              label: "Delete",
             },
           ],
-          name: "status",
-          label: "Status",
-          dataType: "STATUS",
         },
         {
-          name: "priority",
-          label: "Priority",
-          dataType: "STRING",
-        },
-        {
-          name: "project",
-          label: "Project",
-          dataType: "STRING",
+          objectId: 988,
+          title: "API-54: Question about bulk APIs",
+          link: "http://example.com/2",
+          created: "2016-08-04",
+          priority: "HIGH",
+          project: "API",
+          reported_by: "ksmith@hubspot.com",
+          description:
+            "Customer is not able to find documentation about our bulk Contacts APIs.",
+          reporter_type: "Support Rep",
+          status: "Resolved",
+          ticket_type: "Bug",
+          updated: "2016-09-23",
+          properties: [
+            {
+              label: "Resolved by",
+              dataType: "EMAIL",
+              value: "ijones@hubspot.com",
+            },
+            {
+              label: "Resolution type",
+              dataType: "STRING",
+              value: "Referred to documentation",
+            },
+            {
+              label: "Resolution impact",
+              dataType: "CURRENCY",
+              value: "94.34",
+              currencyCode: "GBP",
+            },
+          ],
+          actions: [
+            {
+              type: "IFRAME",
+              width: 890,
+              height: 748,
+              uri: "https://example.com/edit-iframe-contents",
+              label: "Edit",
+            },
+            {
+              type: "CONFIRMATION_ACTION_HOOK",
+              confirmationMessage:
+                "Are you sure you want to delete this ticket?",
+              confirmButtonText: "Yes",
+              cancelButtonText: "No",
+              httpMethod: "DELETE",
+              associatedObjectProperties: ["protected_account"],
+              uri: "https://example.com/tickets/245",
+              label: "Delete",
+            },
+          ],
         },
       ],
-      associatedHubSpotObjectTypes: ["COMPANY"],
-      associatedHubSpotObjectTypeProperties: {
-        COMPANY: ["domain"],
+      settingsAction: {
+        type: "IFRAME",
+        width: 890,
+        height: 748,
+        uri: "https://example.com/settings-iframe-contents",
+        label: "Settings",
+      },
+      primaryAction: {
+        type: "IFRAME",
+        width: 890,
+        height: 748,
+        uri: "https://example.com/create-iframe-contents",
+        label: "Create Ticket",
       },
     });
   } catch (error) {
