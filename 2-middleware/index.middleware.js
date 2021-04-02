@@ -15,7 +15,7 @@ const setLocals = require("./middlewareCollection/setLocals");
 const setCorrelation = require("./middlewareCollection/setCorrelation");
 
 const store = new MongoDBStore({
-  uri: "mongodb://localhost:27017" || DB_URI,
+  uri: process.env.CLOUD_MONGODB_URI || DB_URI,
   databaseName: "rbacDB",
   collection: "sessions",
   expires: 1000 * 60 * 60 * 2,
