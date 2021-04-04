@@ -1,5 +1,6 @@
 const Ticket = require("../4-models/Ticket");
 const createError = require("http-errors");
+const { ticketTypes } = require("../5-utils/constants");
 
 exports.get_tickets = async (req, res, next) => {
   try {
@@ -12,7 +13,10 @@ exports.get_tickets = async (req, res, next) => {
 };
 exports.get_ticket_form = async (req, res, next) => {
   try {
-    return res.status(200).render("ticket", { flashMessage: {} });
+    let ticket = { ticketType: "SOLVE" };
+    return res
+      .status(200)
+      .render("ticket", { ticket, ticketTypes, flashMessage: {} });
   } catch (error) {
     next(error);
   }

@@ -5,6 +5,16 @@
     <label for="description">Description</label>
     <input type="text" name="description" id="description" />
   </div>
+
+  <div>
+    <label for="description">Ticket Type</label>
+    <select name="ticketType" id="ticketType">
+      <% for (var key in ticketTypes) {%>
+      <option value="<%= ticketTypes[key]%>" <%= ticket.ticketType === ticketTypes[key] ? 'selected' : '' %> ><%= ticketTypes[key] %></option>
+      <% }%>
+    </select>
+  </div>
+
   <div>
     <input type="submit" value="Save" />
   </div>
