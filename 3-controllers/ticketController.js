@@ -10,6 +10,24 @@ exports.get_tickets = async (req, res, next) => {
     next(error);
   }
 };
+exports.get_ticket_form = async (req, res, next) => {
+  try {
+    return res.status(200).render("ticket", { flashMessage: {} });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.post_ticket_form = async (req, res, next) => {
+  try {
+    const { description } = req.body;
+    console.log(`post_ticket_form:::${description}`);
+
+    return res.status(200).render("ticket", { flashMessage: {} });
+  } catch (error) {
+    next(error);
+  }
+};
 
 exports.get_hubspot_tickets = async (req, res, next) => {
   try {
