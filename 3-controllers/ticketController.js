@@ -13,7 +13,7 @@ exports.get_tickets = async (req, res, next) => {
 };
 exports.get_ticket_form = async (req, res, next) => {
   try {
-    let ticket = { ticketType: "SOLVE" };
+    let ticket = { ticketType: "", id: "test-ticket-1" };
     return res
       .status(200)
       .render("ticket", { ticket, ticketTypes, flashMessage: {} });
@@ -24,8 +24,23 @@ exports.get_ticket_form = async (req, res, next) => {
 
 exports.post_ticket_form = async (req, res, next) => {
   try {
-    const { description } = req.body;
-    console.log(`post_ticket_form:::${description}`);
+    const { ticketId, description, ticketType } = req.body;
+    console.log(`description::${description}, ticketType::${ticketType}`);
+
+    let ticket = { ticketType: "SOLVE", id: "test-ticket-2" };
+
+    return res
+      .status(200)
+      .render("ticket", { ticket, ticketTypes, flashMessage: {} });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.update_ticket_types = async (req, res, next) => {
+  try {
+    const { ticketId, description } = req.body;
+    console.log(`post_ticket_form:::${description}:::${ticketId}`);
 
     return res.status(200).render("ticket", { flashMessage: {} });
   } catch (error) {

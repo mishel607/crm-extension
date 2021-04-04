@@ -8,9 +8,11 @@
 
   <div>
     <label for="description">Ticket Type</label>
+    <input type="hidden" name="ticketId" value="<%= ticket.id %>" />
+
     <select name="ticketType" id="ticketType">
       <% for (var key in ticketTypes) {%>
-      <option value="<%= ticketTypes[key]%>" <%= ticket.ticketType === ticketTypes[key] ? 'selected' : '' %> ><%= ticketTypes[key] %></option>
+        <option value="<%= ticketTypes[key]%>" <%= ticket.ticketType === ticketTypes[key] ? 'selected' : '' %> ><%= ticketTypes[key] %></option>
       <% }%>
     </select>
   </div>
