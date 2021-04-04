@@ -56,7 +56,7 @@ exports.get_hubspot_tickets = async (req, res, next) => {
               type: "IFRAME",
               width: 890,
               height: 748,
-              uri: "https://example.com/edit-iframe-contents",
+              uri: "https://daalvaat.herokuapp.com/tickets/form",
               label: "Edit",
               associatedObjectProperties: [],
             },
