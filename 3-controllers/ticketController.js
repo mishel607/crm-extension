@@ -24,8 +24,12 @@ exports.get_ticket_form = async (req, res, next) => {
 
 exports.post_ticket_form = async (req, res, next) => {
   try {
-    const { ticketId, description, ticketType } = req.body;
-    console.log(`description::${description}, ticketType::${ticketType}`);
+    const { ticketId, description, ticketType, stuhobbies } = req.body;
+    console.log(
+      `description::${description}, ticketType::${ticketType},stuhobbies:::${
+        stuhobbies || ""
+      }`
+    );
 
     let ticket = { ticketType: "SOLVE", id: "test-ticket-2" };
 
