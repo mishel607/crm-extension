@@ -86,12 +86,12 @@ exports.get_hubspot_tickets = async (req, res, next) => {
     //return res.send(results);
 
     let reqBody = req.body;
-    let { name } = req.body;
+    let { name, hs_parent_company_id } = req.query;
 
-    console.log("reqBody:::", reqBody);
+    console.log("hs_parent_company_id:::", hs_parent_company_id);
     console.log("name:::", name);
 
-    return res.json({ reqBody: reqBody, name: name });
+    return res.json({ reqBody: req.query });
 
     // return res.json({
     //   results: [
