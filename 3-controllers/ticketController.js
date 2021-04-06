@@ -91,6 +91,8 @@ exports.get_hubspot_tickets = async (req, res, next) => {
     console.log("reqBody:::", reqBody);
     console.log("name:::", name);
 
+    return res.json({ reqBody: reqBody, name: name });
+
     return res.json({
       results: [
         {
