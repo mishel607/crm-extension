@@ -81,11 +81,17 @@ exports.update_ticket_types = async (req, res, next) => {
 
 exports.get_hubspot_tickets = async (req, res, next) => {
   try {
-    const results = await Ticket.find();
-    console.log("get_tickets");
+    //const results = await Ticket.find();
+    //console.log("get_tickets");
     //return res.send(results);
 
-    res.json({
+    let reqBody = req.body;
+    let { name } = req.body;
+
+    console.log("reqBody:::", reqBody);
+    console.log("name:::", name);
+
+    return res.json({
       results: [
         {
           objectId: 245,

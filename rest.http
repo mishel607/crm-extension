@@ -85,3 +85,7 @@ Content-Type: application/json
 {
 "description":"test2"
 }
+
+
+### hubCompany carrier
+GET http://localhost:8080/hubCompany/

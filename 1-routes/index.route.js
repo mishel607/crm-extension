@@ -8,6 +8,7 @@ const userRoute = require("./routeCollection/userRoute");
 const productRoute = require("./routeCollection/productRoute");
 const rocketRoute = require("./routeCollection/rocketRoute");
 const ticketRoute = require("./routeCollection/ticketRoute");
+const hubspotComapnyRoute = require("./routeCollection/hubspotComapnyRoute");
 
 const routes = [
   {
@@ -49,6 +50,10 @@ const routes = [
   {
     path: "/tickets",
     handler: ticketRoute,
+  },
+  {
+    path: "/hubCompany",
+    handler: hubspotComapnyRoute,
   },
   {
     path: "/",
