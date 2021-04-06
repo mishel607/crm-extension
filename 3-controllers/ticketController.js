@@ -11,6 +11,26 @@ exports.get_tickets = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.add_ticket = async (req, res, next) => {
+  try {
+    //const results = await Ticket.find();
+    console.log("add_ticket");
+    return res.render("add_ticket");
+  } catch (error) {
+    next(error);
+  }
+};
+exports.update_ticket = async (req, res, next) => {
+  try {
+    //const results = await Ticket.find();
+    console.log("update_ticket");
+    return res.render("update_ticket");
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.get_ticket_form = async (req, res, next) => {
   try {
     let ticket = { ticketType: "", id: "test-ticket-1" };
@@ -203,6 +223,77 @@ exports.post_ticket = async (req, res, next) => {
     const result = await ticket.save();
     console.log("post_ticket");
     return res.send(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+//api
+
+exports.post_create = async (req, res, next) => {
+  //validate request
+
+  try {
+    const { ticketName, description, ticketPipeline, ticketStatus } = req.body;
+    const ticket = new Ticket({
+      ticketName,
+      description,
+      ticketPipeline,
+      ticketStatus,
+    });
+
+    const result = await ticket.save();
+    console.log("post_create");
+    return res.send(result);
+  } catch (error) {
+    next(error);
+  }
+};
+exports.get_find = async (req, res, next) => {
+  try {
+    console.log("req.query.id", req.query.id);
+    if (req.query.id) {
+      const id = req.query.id;
+
+      const result = await Ticket.findById(id);
+
+      if (!result) {
+        return res
+          .status(404)
+          .send({ message: "Data Not found with id " + id });
+      }
+
+      return res.send(result);
+    }
+
+    const results = await Ticket.find();
+    console.log("get_find");
+    return res.send(results);
+  } catch (error) {
+    next(error);
+  }
+};
+exports.put_update = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const { ticketName, description, ticketPipeline, ticketStatus } = req.body;
+    const options = { new: true };
+
+    const result = await Product.findByIdAndUpdate(
+      id,
+      { ticketName, description, ticketPipeline, ticketStatus },
+      options
+    );
+    res.send(result);
+  } catch (error) {
+    next(error);
+  }
+};
+exports.delete_deleteTicket = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const result = await Product.findByIdAndDelete(id);
+    res.send(result);
   } catch (error) {
     next(error);
   }

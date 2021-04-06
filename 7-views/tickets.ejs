@@ -1,0 +1,37 @@
+<!-- inlcude header -->
+<%- include('./layouts/header') %>
+<!-- /inlcude header -->
+
+<h1 class="table">All Tickets</h1>
+
+<a href="/tickets/add_ticket">Add Ticket</a>
+
+<table class="table">
+  <thead>
+    <th>id</th>
+    <th>ticketName</th>
+    <th>ticketType</th>
+    <th>ticketPipeline</th>
+    <th>ticketStatus</th>
+    <th>description</th>
+  </thead>
+  <tbody>
+    <% tickets.forEach(ticket => { %>
+    <tr>
+      <td><%= ticket._id %></td>
+      <td><%= ticket.ticketName %></td>
+      <td>
+        <a href="/tickets/update_ticket/<%= ticket._id %>">test</a>
+      </td>
+      <td><%= ticket.ticketType %></td>
+      <td><%= ticket.ticketPipeline %></td>
+      <td><%= ticket.ticketStatus %></td>
+      <td><%= ticket.description %></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<!-- inlcude footer -->
+<%- include('./layouts/footer') %>
+<!-- /inlcude footer -->
