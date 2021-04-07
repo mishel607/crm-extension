@@ -95,3 +95,6 @@ GET http://localhost:8080/hubCompany?hs_object_id=4490302912
 
 ### hubCompany carrier
 GET http://localhost:8080/tickets/hubspot
+
+### hubCompany deal dropdown
+GET http://localhost:8080/hubDeal/4489397443

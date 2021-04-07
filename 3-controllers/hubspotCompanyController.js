@@ -7,8 +7,6 @@ const hubspot = new Hubspot({
   checkLimit: false, // (Optional) Specify whether to check the API limit on each call. Default: true
 });
 
-exports.get_carrier = (req, res, next) => {};
-
 exports.get_carrier = async (req, res, next) => {
   //res.send("update a single product.");
   try {
@@ -91,17 +89,6 @@ function formatCompanyData(res) {
   let title = "Carrier"; //1
   let link = "http://example.com/1"; //1
 
-  let actions = [
-    {
-      type: "IFRAME",
-      width: 890,
-      height: 748,
-      uri: "https://daalvaat.herokuapp.com/tickets/form",
-      label: "View Detail",
-      associatedObjectProperties: [],
-    },
-  ];
-
   let settingsAction = [];
 
   let response = formatResponse(res);
@@ -113,7 +100,6 @@ function formatCompanyData(res) {
       ...item,
       title: title,
       link: link,
-      actions: actions,
       settingsAction: settingsAction,
     };
   });
@@ -144,7 +130,18 @@ function formatResponse(res) {
       },
     ];
 
-    return { ...item, objectId: objectId, properties: properties };
+    let actions = [
+      {
+        type: "IFRAME",
+        width: 890,
+        height: 748,
+        uri: "https://daalvaat.herokuapp.com/hubDeal/" + item.companyId,
+        label: "View Detail",
+        associatedObjectProperties: [],
+      },
+    ];
+
+    return { ...item, objectId: objectId, properties: properties, actions };
   });
 }
 
