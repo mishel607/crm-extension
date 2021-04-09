@@ -9,6 +9,12 @@ module.exports = {
     error: "ERROR",
     solve: "SOLVE",
   },
+  formActionTypes: {
+    view: "VIEW",
+    add: "SAVE",
+    update: "UPDATE",
+    delete: "DELETE",
+  },
 
   hubs: {
     TierOne: {

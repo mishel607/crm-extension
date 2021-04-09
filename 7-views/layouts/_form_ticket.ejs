@@ -1,4 +1,8 @@
-<form action="/tickets/form" method="post" class="lg-form">
+<form
+  action="<%= ticket.formAction %>"
+  method="<%= ticket.formActionMethod %>"
+  class="lg-form"
+>
   <div>
     <label for="ticketName">Ticket Name</label>
     <input type="hidden" name="id" value="<%= ticket %>" />
@@ -40,6 +44,7 @@
   </div>
 
   <div>
+    <h5>Ticket Status</h5>
     <p>
       <input class="with-gap" type="radio" name="ticketStatus" id="New"
       value="New" <%= ticket.ticketStatus == 'New' ? 'checked' : '' %> />
@@ -47,7 +52,7 @@
     </p>
     <p>
       <input class="with-gap" type="radio" name="ticketStatus" id="Closed"
-      value="Closed" <%= ticket.ticketStatus == 'New' ? 'checked' : '' %> />
+      value="Closed" <%= ticket.ticketStatus == 'Closed' ? 'checked' : '' %> />
       <label for="Closed">Closed</label>
     </p>
   </div>
@@ -65,6 +70,6 @@
   </div>
 
   <div>
-    <input type="submit" value="Save" />
+    <input type="submit" value="<%= ticket.formActionTypes%>" />
   </div>
 </form>
