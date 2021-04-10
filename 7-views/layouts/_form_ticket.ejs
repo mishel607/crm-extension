@@ -3,6 +3,8 @@
   method="<%= ticket.formActionMethod %>"
   class="lg-form"
 >
+
+<input type="hidden" name="ticketId" value="<%= ticket.id %>" />
   <div>
     <label for="ticketName">Ticket Name</label>
     <input type="hidden" name="id" value="<%= ticket %>" />

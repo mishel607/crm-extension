@@ -28,9 +28,9 @@ exports.get_finds = async (req, res, next) => {
   }
 };
 
-exports.get_find_by_id = async (req, res, next) => {
+exports.get_ticket_by_id = async (req, res, next) => {
   try {
-    const id = req.query.id;
+    const id = req.params.id;
 
     if (!id) {
       return res.status(404).send({ message: `Data Not found with id ${id}` });
@@ -72,16 +72,27 @@ exports.post_add = async (req, res, next) => {
 exports.put_update = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const { ticketName, description, ticketPipeline, ticketStatus } = req.body;
+    const {
+      ticketName,
+      description,
+      ticketPipeline,
+      ticketStatus,
+      ticketType,
+    } = req.body;
     const options = { new: true };
 
-    const result = await Product.findByIdAndUpdate(
+    console.log("api put_update", id);
+
+    const result = await Ticket.findByIdAndUpdate(
       id,
-      { ticketName, description, ticketPipeline, ticketStatus },
+      { ticketName, description, ticketPipeline, ticketStatus, ticketType },
       options
     );
+
+    console.log({ result });
     res.send(result);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
