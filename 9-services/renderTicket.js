@@ -8,10 +8,13 @@ const {
 
 exports.view_tickets = async (req, res, next) => {
   try {
-    const uri = `${currentAPPURI}/api/get_finds`;
-    console.log("uri", uri);
+    let currentPage = parseInt(req.query.page) || 1;
+    const uri = `${currentAPPURI}/api/get_finds?page=${currentPage}`;
+    //console.log("uri", uri);
 
+    //console.log({ currentPage });
     const { data } = await httpGet(uri);
+    //console.log({ items: data.items });
 
     return res.render("tickets", { tickets: data });
   } catch (error) {

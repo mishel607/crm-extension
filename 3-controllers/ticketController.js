@@ -5,13 +5,24 @@ const { ticketTypes } = require("../5-utils/constants");
 //api
 
 exports.get_finds = async (req, res, next) => {
+  let filter = req.query.filter || "latest";
+  let currentPage = parseInt(req.query.page) || 1;
+  let itemPerPage = 5;
+  let order = 1;
+  12;
   try {
-    if (req.query.id) {
-      return this.get_find_by_id;
-    }
+    console.log("api current page", currentPage);
+    let items = await Ticket.find()
+      .populate("author", "username")
+      .sort(order === 1 ? "-createdAt" : "createdAt")
+      .skip(itemPerPage * currentPage - itemPerPage)
+      //.skip((currentPage - 1) * itemPerPage)
+      .limit(itemPerPage);
 
-    const results = await Ticket.find();
-    return res.send(results);
+    let totalItems = await Ticket.countDocuments();
+    let totalPage = totalItems / itemPerPage;
+
+    return res.send({ items, itemPerPage, currentPage, totalPage, totalItems });
   } catch (error) {
     next(error);
   }
