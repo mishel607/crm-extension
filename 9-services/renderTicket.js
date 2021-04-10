@@ -10,11 +10,7 @@ exports.view_tickets = async (req, res, next) => {
   try {
     let currentPage = parseInt(req.query.page) || 1;
     const uri = `${currentAPPURI}/api/get_finds?page=${currentPage}`;
-    //console.log("uri", uri);
-
-    //console.log({ currentPage });
     const { data } = await httpGet(uri);
-    //console.log({ items: data.items });
 
     return res.render("tickets", { tickets: data });
   } catch (error) {
@@ -27,13 +23,12 @@ exports.view_get_add_ticket = async (req, res, next) => {
   try {
     const ticket = formatReqBody({
       ticketName: "",
-      ticketPipeline: "",
-      ticketStatus: "New",
-      description: "",
-      pipeline,
-      ticketTypes,
-      ticketType: "SOLVE",
+      pipeline, //check box
       checkedPipeline: "warrany,implementation",
+      description: "",
+      ticketStatus: "New", //radio button
+      ticketTypes, //ddl
+      ticketType: "SOLVE",
     });
 
     console.log(ticket);
@@ -63,20 +58,27 @@ exports.view_post_add_ticket = async (req, res, next) => {
   try {
     const uri = `${currentAPPURI}/api/post_add`;
 
-    //console.log(uri);
-
-    const { ticketName, ticketPipeline, ticketStatus, description } = req.body;
+    const {
+      ticketName,
+      ticketStatus,
+      description,
+      checkedPipeline,
+      ticketType,
+    } = req.body;
     const newOption = {
       ticketName,
-      ticketPipeline: ticketPipeline.toString().trim(),
+      pipeline,
+      checkedPipeline: checkedPipeline.toString().trim(),
+      ticketPipeline: checkedPipeline.toString().trim(),
       ticketStatus,
+      ticketTypes,
+      ticketType,
       description: description.trim(),
     };
 
     console.log(newOption);
 
-    let { data2 } = await httpPost(uri, newOption);
-    let data;
+    let { data } = await httpPost(uri, newOption);
     if (data) {
       return res.redirect("/tickets");
     } else {

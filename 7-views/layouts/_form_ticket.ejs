@@ -18,7 +18,7 @@
     <label for="description">Pipeline</label>
 
     <% for (var key in ticket.pipeline) {%> <input type="checkbox" id="<%=key%>"
-    name="ticketPipeline" value="<%=ticket.pipeline[key]%>"
+    name="checkedPipeline" value="<%=key%>"
     <%=ticket.checkedPipeline.split(',').includes(key) ? 'checked' : '' %> />
 
     <label for="<%=key%>"><%=ticket.pipeline[key]%></label>
