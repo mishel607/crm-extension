@@ -4,6 +4,12 @@ module.exports = {
     moderator: "MODERATOR",
     client: "CLIENT",
   },
+  pipeline: {
+    warrany: "Warrany",
+    sales: "Sales",
+    marketing: "Marketing",
+    implementation: "Implementation",
+  },
   ticketTypes: {
     bug: "BUG",
     error: "ERROR",

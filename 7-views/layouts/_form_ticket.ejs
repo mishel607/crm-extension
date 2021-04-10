@@ -14,33 +14,16 @@
     />
   </div>
 
-  <div class="form-group">
-    <h5>Pipeline</h5>
-    <input
-      type="checkbox"
-      id="pipeline"
-      name="ticketPipeline"
-      value="Warrany"
-    />
-    &nbsp;&nbsp;<strong>Warrany</strong>&nbsp;&nbsp;
-    <input
-      type="checkbox"
-      id="pipeline"
-      name="ticketPipeline"
-      value="Sales"
-    />&nbsp;&nbsp;<strong>Sales</strong>&nbsp;&nbsp;
-    <input
-      type="checkbox"
-      id="pipeline"
-      name="ticketPipeline"
-      value="Marketing"
-    />&nbsp;&nbsp;<strong>Marketing</strong>&nbsp;&nbsp;
-    <input
-      type="checkbox"
-      id="pipeline"
-      name="ticketPipeline"
-      value="Implementation"
-    />&nbsp;&nbsp;<strong>Implementation</strong>&nbsp;&nbsp;
+  <div>
+    <label for="description">Pipeline</label>
+
+    <% for (var key in ticket.pipeline) {%> <input type="checkbox" id="<%=key%>"
+    name="ticketPipeline" value="<%=ticket.pipeline[key]%>"
+    <%=ticket.checkedPipeline.split(',').includes(key) ? 'checked' : '' %> />
+
+    <label for="<%=key%>"><%=ticket.pipeline[key]%></label>
+
+    <% }%>
   </div>
 
   <div>

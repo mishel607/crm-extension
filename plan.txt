@@ -171,3 +171,5 @@ to deploy on heroku used following script on package.json
 //ejs
 
 res.redirect("/auth/register");
+
+<li><%=JSON.stringify(task.task)%>
