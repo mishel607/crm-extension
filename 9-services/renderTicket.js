@@ -1,4 +1,4 @@
-const { httpGet, httpPost, httpPut } = require("./httpService");
+const { httpGet, httpPost, httpPut, httpDelete } = require("./httpService");
 const currentAPPURI = "http://localhost:8080/tickets";
 const {
   formActionTypes,
@@ -182,17 +182,81 @@ function formatReqBodyForUpdate(body) {
   };
 }
 
-exports.view_delete_ticket = async (req, res, next) => {
+exports.view_get_view_ticket = async (req, res, next) => {
   try {
-    const uri = `${currentAPPURI}/api/tickets?id=${req.params.id}`;
+    const uri = `${currentAPPURI}/api/get_ticket_by_id/${req.params.id}`;
     console.log("uri", uri);
 
     const { data } = await httpGet(uri);
 
-    console.log("data", data);
+    const {
+      ticketName,
+      ticketStatus,
+      description,
+      ticketPipeline,
+      ticketType,
+      _id,
+    } = data;
+    const newOption = {
+      ticketName,
+      pipeline,
+      checkedPipeline: ticketPipeline,
+      ticketPipeline: ticketPipeline,
+      ticketStatus,
+      ticketTypes,
+      ticketType,
+      description: description.trim(),
+      id: _id,
+    };
 
-    return res.render("delete_ticket", { ticket: data });
+    console.log(newOption);
+    return res.render("update_ticket", {
+      ticket: formatReqBodyForDelete(newOption),
+    });
+
+    //return res.render("update_ticket", { ticket: data });
+    //return res.render("tickets");
   } catch (error) {
     next(error);
   }
 };
+
+exports.view_post_delete_ticket = async (req, res, next) => {
+  try {
+    const { ticketId } = req.body;
+
+    const uri = `${currentAPPURI}/api/delete_deleteTicket/${ticketId}`;
+    console.log("uri", uri);
+
+    const { data } = await httpDelete(uri);
+
+    console.log("data", data);
+
+    if (data) {
+      return res.redirect("/tickets");
+    } else {
+      return res.render("update_ticket", {
+        ticket: formatReqBodyForUpdate(newOption),
+      });
+    }
+
+    //return res.render("delete_ticket", { ticket: data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+function formatReqBodyForDelete(body) {
+  let formTitle = "View ticket";
+  let actionTypes = formActionTypes.delete;
+  let formAction = "/tickets/deleteTicket";
+  let formActionMethod = "POST";
+
+  return {
+    ...body,
+    formTitle,
+    formActionTypes: actionTypes,
+    formAction,
+    formActionMethod,
+  };
+}

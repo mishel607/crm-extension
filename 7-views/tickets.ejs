@@ -21,12 +21,14 @@
       <td><%= ticket._id %></td>
       <td><%= ticket.ticketName %></td>
       <td>
-        <a href="/tickets/update_ticket/<%= ticket._id %>">test</a>
+        <a href="/tickets/updateTicket/<%= ticket._id %>">test</a>
       </td>
       <td><%= ticket.ticketType %></td>
       <td><%= ticket.ticketPipeline %></td>
       <td><%= ticket.ticketStatus %></td>
       <td><%= ticket.description %></td>
+      <td><a href="/tickets/updateTicket/<%= ticket._id %>">Edit</a></td>
+      <td><a href="/tickets/deleteTicket/<%= ticket._id %>">Delete</a></td>
     </tr>
     <% }) %>
   </tbody>

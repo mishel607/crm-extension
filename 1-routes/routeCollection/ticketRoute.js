@@ -24,6 +24,8 @@ const {
   view_post_update_ticket,
   view_get_add_ticket,
   view_post_add_ticket,
+  view_get_view_ticket,
+  view_post_delete_ticket,
 } = require("../../9-services/renderTicket");
 
 // //view
@@ -55,10 +57,15 @@ router.post("/addTicket", view_post_add_ticket);
 router.get("/updateTicket/:id", view_get_update_ticket); //607181ce88f0873228e131ac
 router.post("/updateTicket", view_post_update_ticket);
 
+router.get("/deleteTicket/:id", view_get_view_ticket); //607181ce88f0873228e131ac
+router.post("/deleteTicket", view_post_delete_ticket);
+
 //api
 router.get("/api/get_finds", get_finds);
 router.get("/api/get_ticket_by_id/:id", get_ticket_by_id);
 router.post("/api/post_add", post_add);
 router.put("/api/put_update/:id", put_update);
+
+router.delete("/api/delete_deleteTicket/:id", delete_deleteTicket);
 
 module.exports = router;
