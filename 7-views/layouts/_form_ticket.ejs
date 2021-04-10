@@ -41,6 +41,17 @@
   </div>
 
   <div>
+    <label for="description">Ticket Type</label>
+    <!-- <input type="hidden" name="ticketId" value="<%= ticket.id %>" /> -->
+
+    <select name="ticketType" id="ticketType">
+      <% for (var key in ticket.ticketTypes) {%>
+        <option value="<%= ticket.ticketTypes[key]%>" <%= ticket.ticketType === ticket.ticketTypes[key] ? 'selected' : '' %> ><%= ticket.ticketTypes[key] %></option>
+      <% }%>
+    </select>
+  </div>
+
+  <div>
     <label for="description">Ticket Description</label>
     <textarea
       placeholder="Enter description"

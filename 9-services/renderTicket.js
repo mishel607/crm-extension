@@ -1,6 +1,10 @@
 const { httpGet, httpPost } = require("./httpService");
 const currentAPPURI = "http://localhost:8080/tickets";
-const { formActionTypes, pipeline } = require("../5-utils/constants");
+const {
+  formActionTypes,
+  pipeline,
+  ticketTypes,
+} = require("../5-utils/constants");
 
 exports.view_tickets = async (req, res, next) => {
   try {
@@ -23,7 +27,9 @@ exports.view_get_add_ticket = async (req, res, next) => {
       ticketPipeline: "",
       ticketStatus: "New",
       description: "",
-      pipeline: pipeline,
+      pipeline,
+      ticketTypes,
+      ticketType: "SOLVE",
       checkedPipeline: "warrany,implementation",
     });
 
