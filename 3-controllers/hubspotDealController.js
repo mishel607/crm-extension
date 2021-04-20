@@ -2,6 +2,28 @@ var request = require("request-promise");
 const Hubspot = require("hubspot");
 const { json } = require("express");
 
+exports.get_carrier_detail = async (req, res, next) => {
+  try {
+    let companies = [];
+
+    let company = {
+      dealName: "Chicago Bread,LLC- Yorkville,IL",
+      createDate: "3/5/2021",
+      firstContactCreateDate: "-",
+      parentCompany: "Hamra Enterprise",
+      connectivity: "$499.99",
+      recentDealCloseDate: "10/1/2019",
+    };
+
+    for (let index = 0; index < 5; index++) {
+      companies.push(company);
+    }
+
+    return res.render("carrierDetail", { deals: companies });
+  } catch (error) {
+    next(error);
+  }
+};
 exports.get_deal = async (req, res, next) => {
   const { companyId } = req.params;
 
