@@ -7,6 +7,78 @@ const hubspot = new Hubspot({
   checkLimit: false, // (Optional) Specify whether to check the API limit on each call. Default: true
 });
 
+exports.get_tierOne_carrier = async (req, res, next) => {
+  try {
+    return res.json({
+      results: [
+        {
+          objectId: 1,
+          title: "Carrier",
+          link: "http://example.com/1",
+
+          properties: [
+            {
+              label: "Carrier",
+              dataType: "STRING",
+              value: "Mitel",
+            },
+            {
+              label: "Amount",
+              dataType: "CURRENCY",
+              value: "3400",
+              currencyCode: "GBP",
+            },
+          ],
+          actions: [
+            {
+              type: "IFRAME",
+              width: 890,
+              height: 748,
+              uri: `https://daalvaat.herokuapp.com/carrierDetail`,
+              label: "View Detail",
+              associatedObjectProperties: [],
+            },
+          ],
+          settingsAction: [],
+        },
+        {
+          objectId: 2,
+          title: "Carrier",
+          link: "http://example.com/1",
+
+          properties: [
+            {
+              label: "Carrier",
+              dataType: "STRING",
+              value: "Nitel",
+            },
+            {
+              label: "Amount",
+              dataType: "CURRENCY",
+              value: "2321",
+              currencyCode: "GBP",
+            },
+          ],
+          actions: [
+            {
+              type: "IFRAME",
+              width: 890,
+              height: 748,
+              uri: `https://daalvaat.herokuapp.com/carrierDetail`,
+              label: "View Detail",
+              associatedObjectProperties: [],
+            },
+          ],
+          settingsAction: [],
+        },
+      ],
+    });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
 exports.get_carrier = async (req, res, next) => {
   //res.send("update a single product.");
   try {
