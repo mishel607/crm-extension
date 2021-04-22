@@ -272,5 +272,3 @@ async function getDealInformation(dealId) {
     return deal;
   } catch (error) {}
 }
-
-//

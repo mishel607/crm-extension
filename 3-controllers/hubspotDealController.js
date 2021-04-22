@@ -74,6 +74,24 @@ async function get_association_company_to_deal(companyId) {
     console.log(error);
   }
 }
+async function get_association_deal_to_line_item(companyId) {
+  try {
+    const response = await request({
+      method: "GET",
+      url: `https://api.hubapi.com/crm-associations/v1/associations/${companyId}/HUBSPOT_DEFINED/19`,
+      qs: {
+        hapikey: "645e4669-478e-4172-bf2b-dce0e193b458",
+        limit: 100,
+      },
+      json: true,
+    });
+    let { results } = response;
+
+    return results.length ? results : 0;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 async function getDealInformation(dealId) {
   try {
