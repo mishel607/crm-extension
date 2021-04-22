@@ -98,3 +98,14 @@ GET http://localhost:8080/tickets/hubspot
 
 ### hubCompany deal dropdown
 GET http://localhost:8080/hubDeal/4489397443
+
+
+### TierOne
+POST http://localhost:8080/hubspot/api/post_get_a_group_of_line_items_by_id
+Content-Type: application/json
+
+{
+  "ids": [
+    1259303592    
+  ]
+}
