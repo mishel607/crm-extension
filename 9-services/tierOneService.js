@@ -43,6 +43,20 @@ exports.post_get_a_group_of_line_items_by_id = async (req, res, next) => {
   }
 };
 
+exports.get_company_carrier = async (req, res, next) => {
+  try {
+    const companyId = req.params.id;
+
+    const uri = `${currentAPPURI}/api/get_company_to_deal/${companyId}?client=${hubs.TierOne.client}`;
+
+    const { data } = await httpGet(uri);
+    return res.send(data);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
 exports.get_company = async (companyId) => {
   const company = {};
   try {
