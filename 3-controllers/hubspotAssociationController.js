@@ -1,39 +1,76 @@
 var request = require("request-promise");
 const Hubspot = require("hubspot");
+const { hubs } = require("../5-utils/constants");
 
-async function get_company_to_deal(companyId) {
+//http://localhost:8080/hubspot/api/get_company_to_deal/5654143298?client=TierOne
+exports.get_company_to_deal = async (req, res, next) => {
   try {
+    const companyId = req.params.id;
+    const { client } = req.query;
+
+    console.log({ client });
+
     const response = await request({
       method: "GET",
       url: `https://api.hubapi.com/crm-associations/v1/associations/${companyId}/HUBSPOT_DEFINED/6`,
       qs: {
-        hapikey: "3dea956b-54b7-4f8c-af5b-c5c8d5af3add",
+        hapikey: hubs[client].hapikey,
         limit: 100,
       },
       json: true,
     });
-    let { results } = response;
 
-    return results.length ? results : 0;
+    let { results } = response;
+    console.log(results);
+
+    return res.json(results.length ? results : []);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
-}
-async function get_deal_to_line_item(companyId) {
+};
+
+//http://localhost:8080/hubspot/api/get_deal_to_line_item/4702253081?client=TierOne
+exports.get_deal_to_line_item = async (req, res, next) => {
   try {
+    const dealId = req.params.id;
+    const { client } = req.query;
+
     const response = await request({
       method: "GET",
-      url: `https://api.hubapi.com/crm-associations/v1/associations/${companyId}/HUBSPOT_DEFINED/19`,
+      url: `https://api.hubapi.com/crm-associations/v1/associations/${dealId}/HUBSPOT_DEFINED/19`,
       qs: {
-        hapikey: "645e4669-478e-4172-bf2b-dce0e193b458",
+        hapikey: hubs[client].hapikey,
         limit: 100,
       },
       json: true,
     });
     let { results } = response;
 
-    return results.length ? results : 0;
+    return res.json(results.length ? results : []);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
-}
+};
+
+//localhost:8080/hubspot/api/parent_company_to_child_company/5644499285?client=TierOne
+http: exports.parent_company_to_child_company = async (req, res, next) => {
+  try {
+    const companyId = req.params.id;
+    const { client } = req.query;
+
+    const response = await request({
+      method: "GET",
+      url: `https://api.hubapi.com/crm-associations/v1/associations/${companyId}/HUBSPOT_DEFINED/13`,
+      qs: {
+        hapikey: hubs[client].hapikey,
+        limit: 100,
+      },
+      json: true,
+    });
+    let { results } = response;
+
+    return res.json(results.length ? results : []);
+  } catch (error) {
+    next(error);
+  }
+};
