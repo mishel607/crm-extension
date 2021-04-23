@@ -43,6 +43,7 @@ exports.post_get_a_group_of_line_items_by_id = async (req, res, next) => {
   }
 };
 
+//http://localhost:8080/tierone/get_company_carrier/5644499285?client=TierOne
 exports.get_company_carrier = async (req, res, next) => {
   try {
     const companyId = req.params.id;
